@@ -4,3 +4,5 @@ This repository is used for the development of a complete system in context of a
 The system is written in VHDL language and has been developed with the use of vivado edit suit.
 Collaborators: 1. BlueSpirit48
                2. gratom8
+
+Project Theme: Floating Point Adder 32-bit, using IEEE754 Standard
