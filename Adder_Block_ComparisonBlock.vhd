@@ -17,7 +17,9 @@ architecture full_compare_block_arch of full_compare_block is
     begin
         FullCMP <= "01" when CMP = '0' else
                    "10" when AMan = BMan else
-                   "11" when AMan /= BMan else
+                   "11" when AMan > BMan else
+                   "01" when AMan < BMan else
                    "XX";                   
     
     end full_compare_block_arch;
+    
