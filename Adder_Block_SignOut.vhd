@@ -19,3 +19,4 @@ architecture signout_block_arch of signout_block is
                  SB when FullCMP = "01" else
                  'X';
     end signout_block_arch;
+    
