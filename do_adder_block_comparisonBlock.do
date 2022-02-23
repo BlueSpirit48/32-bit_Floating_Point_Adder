@@ -15,3 +15,5 @@ force -freeze CMP 0
 run 100
 force -freeze CMP 1
 run 100
+force -freeze AMan 11100000100001111101011100
+run 100
