@@ -1,7 +1,7 @@
 --counts the leading zeros of the sum
 --of the two mantissas in order to speed up
 --the normalization phase
-
+--
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
