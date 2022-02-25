@@ -1,0 +1,148 @@
+--unit that checks for special cases of inputs and determines output
+--for said special cases
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity ab_case is
+	port(sA,sB: in std_logic;                           --sign of inputs A,B
+	     expA,expB: in std_logic_vector(7 downto 0);    --exponent of inputs A,B
+	     manA,manB: in std_logic_vector(22 downto 0);   --mantissa of inputs A,B
+	     typeA,typeB: in std_logic_vector(2 downto 0);  --types of inputs A,B
+             --casecode: out std_logic_vector(3 downto 0);    --code depending on combination of A,B types
+	     en: out std_logic;                             --enable for later use(small ALU)
+	     sO: out std_logic;                             --sign of output in special case
+	     expO: out std_logic_vector(7 downto 0);        --exponent of output in special case
+	     manO: out std_logic_vector(22 downto 0));      --mantissa of output in special case
+end ab_case;
+architecture ab_case_arch of ab_case is
+begin
+	process(typeA,typeB,sA,sB,expA,expB,manA,manB)
+	begin
+		--both A and B are normals--
+		if ((typeA and typeB)="010") then       
+			--casecode <= "0000";----------
+			en <= '1';
+			sO <= 'X';
+			expO <= "XXXXXXXX";
+			manO <= "XXXXXXXXXXXXXXXXXXXXXXX";
+		elsif((typeA and typeB)="010" and (sA/=sB) and (expA=expB) and (manA=manB)) then --special case A=-B
+			en <= '0';
+			sO <= sA;
+			expO <= "00000000";
+			manO <= "00000000000000000000000";
+		end if;
+
+		--one is normal one is subnormal--
+		if (typeA="010" and typeB="001") then      
+			--casecode <= "0001";----------
+			en <= '0';
+			sO <= sA;
+			expO <= expA;
+			manO <= manA;
+		elsif (typeA="001" and typeB="010") then
+			--casecode <= "0001";-------------
+			en <= '0';
+			sO <= sB;
+			expO <= expB;
+			manO <= manB;
+		end if;
+		
+		--both are subnormals--
+		if (typeA="001" and typeB="001") then
+			--casecode <= "0010";----------
+			en <= '0';
+			sO <= '0';
+			expO <= "00000000";
+			manO <= "00000000000000000000000";
+		end if;
+			
+		--one is normal one is zero--
+		if (typeA="010" and typeB="000") then
+			--casecode <= "0011";----------
+			en <= '0';
+			sO <= sA;
+			expO <= expA;
+			manO <= manA;
+		elsif (typeA="000" and typeB="010") then
+			--casecode <= "0011";-------------
+			en <= '0';
+			sO <= sB;
+			expO <= expB;
+			manO <= manB;
+		end if;
+		
+		--one is subnormal one is zero--
+		if (typeA="001" and typeB="000") then
+			--casecode <= "0100";----------
+			en <= '0';
+			sO <= '0';
+			expO <= "00000000";
+			manO <= "00000000000000000000000";
+		elsif (typeA="000" and typeB="001") then
+			--casecode <= "0100";-------------
+			en <= '0';
+			sO <= '0';
+			expO <= "00000000";
+			manO <= "00000000000000000000000";
+		end if;
+		
+		--one is NaN--
+		if (typeA="100") then
+			--casecode <= "0101";---------
+			en <= '0';
+			sO <= sA;
+			expO <= expA;
+			manO <= manA;
+		elsif (typeB="100") then
+			--casecode <= "0101";---------
+			en <= '0';
+			sO <= sB;
+			expO <= expB;
+			manO <= manB;
+		end if;
+		
+		--one is infinity--
+		if (typeA="101" and typeB(2)='0') then
+			--casecode <= "0110";-----------
+			en <= '0';
+			sO <= sA;
+			expO <= expA;
+			manO <= manA;
+		elsif (typeA(2)='0' and typeB="101") then 
+			--casecode <= "0110";--------------
+			en <= '0';
+			sO <= sB;
+			expO <= expB;
+			manO <= manB;
+		end if;
+		
+		--both are infity with the same sign--
+		if ((typeA and typeB)="101" and sA=sB) then	
+			--casecode <= "0111";----------------
+			en <= '0';
+			sO <= sA;
+			expO <= expA;
+			manO <= manA;
+		end if;
+		
+		--both are infinity with different signs--
+		if ((typeA and typeB)="101" and sA/=sB) then
+			--casecode <= "1000";-----------------
+			en <= '0';
+			sO <= '0';
+			expO <= "11111111";
+			manO <= "00000000000000000000001";
+		end if;
+
+		--both are zero--
+		if ((typeA and typeB)="000" and sA=sB) then
+			--casecode <= "1001";----------------
+			en <= '0';
+			sO <= sA;
+			expO <= expA;
+			manO <= manA;
+		end if;
+	end process;
+end ab_case_arch;
