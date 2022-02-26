@@ -26,9 +26,10 @@ architecture nBitAdder_arch of nBitAdder is
             --same sign_just add them
             if(SA = SB) then
             mid_SumMan <= mid_AMan + mid_BMan;
-             --diff sign_sub Larger from smaller_sign determine from SignOut Block 
+            --diff sign & ManB > ManA 
             elsif FullCMP = "01" then
             mid_SumMan <= mid_BMan - mid_AMan;
+            --diff sign & ManA >= ManB
             elsif FullCMP(1) = '1' then
             mid_SumMan <= mid_AMan - mid_BMan;
             end if;
