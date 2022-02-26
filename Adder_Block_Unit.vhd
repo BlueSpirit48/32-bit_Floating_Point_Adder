@@ -26,7 +26,7 @@ architecture Adder_Block_arch of Adder_Block is
     );
     end component;
     
-    component nbit_Shift_Left is
+    component nbit_Shift_Right is
         generic(n: integer; m: integer);
         port(
             inShift: in std_logic_vector(n-1 downto 0);
@@ -72,7 +72,7 @@ architecture Adder_Block_arch of Adder_Block is
                             port map( in0 => BMan, in1 => AMan, sel => CMP, outMUX => mid_MuxOut0);
         mux2: nInputBit_MUX generic map( n => 26)
                             port map( in0 => AMan, in1 => BMan, sel => CMP, outMUX => mid_MuxOut1);
-        shiftR: nbit_Shift_Left generic map(n => 26, m => 5)
+        shiftR: nbit_Shift_Right generic map(n => 26, m => 5)
                                 port map( inShift => mid_MuxOut0, shiftBit => NShiftBits, outShift => mid_ShMuxOut0);
         fullcmp: full_compare_block generic map( n=> 26)
                                     port map(AMan => AMan, BMan => BMan, CMP =>CMP, FullCMP => mid_FullCMP);
