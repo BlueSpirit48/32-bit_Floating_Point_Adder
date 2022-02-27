@@ -21,7 +21,7 @@ begin
 	variable dif: signed(7 downto 0);
 	begin
 		if(en='1') then
-			if(signed(expA) > signed(expB)) then     --B needs shifting
+			if(unsigned(expA) > unsigned(expB)) then     --B needs shifting
 				c <= '1';
 				expOUT <= expA;
 				dif := signed(expA) - signed(expB);
@@ -32,7 +32,7 @@ begin
 				else
 					shift <= "XXXXX";
 				end if;
-			elsif(signed(expA) < signed(expB)) then  --A needs shifting
+			elsif(unsigned(expA) < unsigned(expB)) then  --A needs shifting
 				c <= '0';
 				expOUT <= expB;
 				dif := signed(expB) - signed(expA);
