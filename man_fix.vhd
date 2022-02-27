@@ -6,8 +6,9 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity man_fix is 
-	port(inManA,inManB: in std_logic_vector(22 downto 0);
-	     outManA,outManB: out std_logic_vector(25 downto 0)
+	generic(n: integer:= 23);
+	port(inManA,inManB: in std_logic_vector(n-1 downto 0);
+	     outManA,outManB: out std_logic_vector(n+2 downto 0)
 	    );
 end man_fix;
 architecture man_fix_arch of man_fix is
