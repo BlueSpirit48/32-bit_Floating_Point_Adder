@@ -23,7 +23,15 @@ entity control_unit is
              inc_dec_unf: in std_logic;                        --underflow in increament/decreament of exponent
 	     
 	     --output control signals
-	     out_flags: out std_logic_vector(10 downto 0);     --control flags needed in different units
+	     --out_flags: out std_logic_vector(10 downto 0);     --control flags needed in different units
+	     spec_case_out: out std_logic;                          
+	     cmp_out: out std_logic;                                
+	     shift_num_out: out std_logic_vector(4 downto 0);       
+	     cout_out: out std_logic;                               
+	     round_ovf_out: out std_logic;                         
+	     inc_dec_inf_out: out std_logic;                        
+             inc_dec_unf_out: out std_logic;
+
 	     regs_control: out std_logic_vector(3 downto 0)    --inreg_wr & inreg_rd & outreg_wr & outreg_rd
 
 	     --done: out std_logic;
@@ -36,10 +44,10 @@ type state is (wait_state, yellow_state, rose_state, red_state, lblue_state, dbl
 signal pr_state, nx_state: state;
 
 --mid signals
-signal mid_flags: std_logic_vector(10 downto 0);
+--signal mid_flags: std_logic_vector(10 downto 0);
 begin
-	mid_flags <= spec_case & cmp & shift_num & cout & round_ovf & inc_dec_inf & inc_dec_unf;
-	out_flags <= mid_flags;
+	--mid_flags <= spec_case & cmp & shift_num & cout & round_ovf & inc_dec_inf & inc_dec_unf;
+	--out_flags <= mid_flags;
 	
 	--clock and reset process
 	P1: process(clk,rst)
@@ -52,35 +60,42 @@ begin
 	end process P1;
 
 	--next state and output process
-	P2: process(spec_case,pr_state)   -----or mid_flags?
+	P2: process(pr_state,spec_case,cmp,shift_num,cout,round_ovf,inc_dec_inf,inc_dec_unf)   
 	begin
 		case pr_state is
 			when wait_state => 
 				regs_control <= "1000";
-				out_flags <= "XXXXXXXXXXX";
 				if(start='1') then  
 					nx_state <= yellow_state;
 				else
 					nx_state <= wait_state;
 				end if;
 			when yellow_state =>
-				regs_control <= "0100";
-				if(spec_case='1') then   -----or mid_flags?
+				regs_control <= "0100";   --maybe make it mealy to enable write in reg_out sooner
+				spec_case_out <= spec_case;
+				if(spec_case='1') then   
 					nx_state <= rose_state;
 				else
 					nx_state <= dblue_state;
 				end if;
 			when rose_state =>
 				regs_control <= "0000";
+				cmp_out <= cmp;                               
+	     			shift_num_out <= shift_num;
 				nx_state <= red_state;
 			when red_state =>
 				regs_control <= "0000";
+				cout_out <= cout;
 				nx_state <= lblue_state;
 			when lblue_state => 
 				regs_control <= "0000";
+				round_ovf_out <= round_ovf;                         
+	     			inc_dec_inf_out <= inc_dec_inf;                     
+             			inc_dec_unf_out <= inc_dec_unf;
 				nx_state <= dblue_state;
 			when dblue_state =>
 				regs_control <= "0011"; ----????
+				--done <= '1';
 				nx_state <= wait_state;
 		end case;
 	end process P2;
