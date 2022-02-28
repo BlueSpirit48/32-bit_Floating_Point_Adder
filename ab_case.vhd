@@ -14,24 +14,27 @@ entity ab_case is
 	     en: out std_logic;                             --enable for later use(small ALU)
 	     spec_num: out std_logic_vector(31 downto 0));  --special case output number value
 end ab_case;
+
 architecture ab_case_arch of ab_case is
-signal sO: std_logic;                                       --sign of output in special case
-signal expO: std_logic_vector(7 downto 0);                  --exponent of output in special case
-signal manO: std_logic_vector(22 downto 0);                 --mantissa of output in special case
+	signal sO: std_logic;                               --sign of output in special case
+	signal expO: std_logic_vector(7 downto 0);          --exponent of output in special case
+	signal manO: std_logic_vector(22 downto 0);         --mantissa of output in special case
 begin
 	process(typeA,typeB,sA,sB,expA,expB,manA,manB)
 	begin
 		--both A and B are normals--
 		if ((typeA and typeB)="010") then       
-			en <= '1';
-			sO <= 'X';
-			expO <= "XXXXXXXX";
-			manO <= "XXXXXXXXXXXXXXXXXXXXXXX";
-		elsif((typeA and typeB)="010" and (sA/=sB) and (expA=expB) and (manA=manB)) then --special case A=-B
-			en <= '0';
-			sO <= sA;
-			expO <= "00000000";
-			manO <= "00000000000000000000000";
+			if((sA/=sB) and (expA=expB) and (manA=manB)) then --special case A=-B => sum=0
+				en <= '0';
+				sO <= sA;
+				expO <= "00000000";
+				manO <= "00000000000000000000000";
+			else                                              --normal case, normal operation
+				en <= '1';
+				sO <= 'X';
+				expO <= "XXXXXXXX";
+				manO <= "XXXXXXXXXXXXXXXXXXXXXXX";
+			end if;
 		end if;
 
 		--one is normal one is subnormal--
@@ -48,7 +51,7 @@ begin
 		end if;
 		
 		--both are subnormals--
-		if (typeA="001" and typeB="001") then
+		if ((typeA and typeB)="001") then
 			en <= '0';
 			sO <= '0';
 			expO <= "00000000";
@@ -124,12 +127,14 @@ begin
 		end if;
 
 		--both are zero--
-		if ((typeA and typeB)="000" and sA=sB) then
+		if ((typeA and typeB)="000") then
 			en <= '0';
 			sO <= sA;
 			expO <= expA;
 			manO <= manA;
 		end if;
 	end process;
+	
 	spec_num <= sO & expO & manO;
+	
 end ab_case_arch;

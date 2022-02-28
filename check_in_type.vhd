@@ -14,7 +14,7 @@ architecture check_in_type_arch of check_in_type is
 begin
 	in_type <= "000" when exp="00000000" and man="00000000000000000000000" else   --zero
 		   "001" when exp="00000000" and man/="00000000000000000000000" else  --subnormal
-		   "010" when exp<"11111111" and exp>"00000000" else                  --normal
+		   "010" when exp>"00000000" and exp<"11111111" else                  --normal
                    "101" when exp="11111111" and man="00000000000000000000000" else   --infinity
 		   "100" when exp="11111111" and man/="00000000000000000000000" else  --not a number
 		   "100";                                                             --every other type (X,Z,-,...) is considered a NaN
