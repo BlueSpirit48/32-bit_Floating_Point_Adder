@@ -17,7 +17,7 @@ architecture small_ALU_arch of small_ALU is
 signal c: std_logic;
 --signal dif: signed(7 downto 0);
 begin
-	process(expA,expB)
+	process(expA,expB,en)
 	variable dif: signed(7 downto 0);
 	begin
 		if(en='1') then

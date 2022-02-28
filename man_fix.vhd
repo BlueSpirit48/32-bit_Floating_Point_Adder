@@ -14,7 +14,7 @@ entity man_fix is
 end man_fix;
 architecture man_fix_arch of man_fix is
 begin
-	process(inManA,inManB)
+	process(inManA,inManB,en)
 	begin
 		if (en='1') then
 			outManA <= '1' & inManA & "00";
