@@ -1,4 +1,6 @@
 --register that stores the sum output of the fp adder and its flags
+--synchronous write
+--asynchronous read
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -18,23 +20,20 @@ end output_register;
 architecture output_register_arch of output_register is
 	signal reg: std_logic_vector(31 downto 0);
 begin
-        --registers
 	process(clk,rst)
         begin
         	if(rst = '1') then
                 	reg <= (others =>'0');
-                elsif(clk'event and clk = '1') then --pos edge clk
+                elsif(clk'event and clk = '1') then                         --synchronous write
                 	if(wr_en = '1') then
                 		reg <= sum_in;
 		        else
 				reg <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
                         end if;
-			if(rd_en = '1') then
-				sum_out <= reg;
-			else
-				sum_out <= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-			end if;
                 end if;
         end process;
+	
+	sum_out <= reg when (rd_en='1') else                                --asynchronous read
+		   "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 end output_register_arch;
