@@ -69,9 +69,9 @@ architecture Adder_Block_arch of Adder_Block is
 
     begin
         mux1: nInputBit_MUX generic map( n => 26)
-                            port map( in0 => BMan, in1 => AMan, sel => CMP, outMUX => mid_MuxOut0);
+                            port map( in0 => AMan, in1 => BMan, sel => CMP, outMUX => mid_MuxOut0);
         mux2: nInputBit_MUX generic map( n => 26)
-                            port map( in0 => AMan, in1 => BMan, sel => CMP, outMUX => mid_MuxOut1);
+                            port map( in0 => BMan, in1 => AMan, sel => CMP, outMUX => mid_MuxOut1);
         shiftR: nbit_Shift_Right generic map(n => 26, m => 5)
                                 port map( inShift => mid_MuxOut0, shiftBit => NShiftBits, outShift => mid_ShMuxOut0);
         fullcmp: full_compare_block generic map( n=> 26)
