@@ -1,0 +1,50 @@
+#do file for fp adder:
+vsim -gui work.fp_adder(fp_adder_arch)
+add wave -position insertpoint  \
+sim:/fp_adder/clk \
+sim:/fp_adder/rst \
+sim:/fp_adder/start \
+sim:/fp_adder/numA \
+sim:/fp_adder/numB \
+sim:/fp_adder/flag \
+sim:/fp_adder/regs_control \
+sim:/fp_adder/sum \
+sim:/fp_adder/mid_sA \
+sim:/fp_adder/mid_sB \
+sim:/fp_adder/mid_expA \
+sim:/fp_adder/mid_expB \
+sim:/fp_adder/mid_manA \
+sim:/fp_adder/mid_manB \
+sim:/fp_adder/spec_case_out \
+sim:/fp_adder/spec_case_in \
+sim:/fp_adder/not_spec_case_out \
+sim:/fp_adder/spec_num \
+sim:/fp_adder/cmp_out \
+sim:/fp_adder/cmp_in \
+sim:/fp_adder/exp_out \
+sim:/fp_adder/shift_out \
+sim:/fp_adder/shift_in \
+sim:/fp_adder/manA_out \
+sim:/fp_adder/manB_out \
+sim:/fp_adder/sout \
+sim:/fp_adder/sum_man \
+sim:/fp_adder/cout_out \
+sim:/fp_adder/cout_in \
+sim:/fp_adder/out_exp \
+sim:/fp_adder/man_out \
+sim:/fp_adder/rovf_out \
+sim:/fp_adder/inf_out \
+sim:/fp_adder/unf_out \
+sim:/fp_adder/rovf_in \
+sim:/fp_adder/inf_in \
+sim:/fp_adder/unf_in \
+sim:/fp_adder/mid_regs_control \
+sim:/fp_adder/mid_sum_in \
+sim:/fp_adder/mid_unf_flag_out
+force -freeze sim:/fp_adder/clk 0 0, 1 {50 ps} -r 100
+force -freeze sim:/fp_adder/rst 1 0
+force -freeze sim:/fp_adder/start 1 0
+force -freeze sim:/fp_adder/numA 01000100011110110110101011100001 0
+force -freeze sim:/fp_adder/numB 01000100111110100110000011000001 0
+run 100
+force -freeze sim:/fp_adder/rst 0 0

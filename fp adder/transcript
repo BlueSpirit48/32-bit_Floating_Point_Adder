@@ -1,0 +1,254 @@
+# Compile of zero_count.vhd was successful.
+# Compile of addition_block.vhd failed with 5 errors.
+# Compile of big_ALU.vhd was successful.
+# Compile of compare.vhd was successful.
+# Compile of exp_compare_block.vhd was successful.
+# Compile of inc_dec_exp.vhd was successful.
+# Compile of input_register.vhd was successful.
+# Compile of man_fix.vhd failed with 5 errors.
+# Compile of mux.vhd was successful.
+# Compile of norm_round_block.vhd was successful.
+# Compile of num_type.vhd failed with 2 errors.
+# Compile of output_block.vhd failed with 1 errors.
+# Compile of output_register.vhd was successful.
+# Compile of round.vhd was successful.
+# Compile of round_ovf.vhd was successful.
+# Compile of shift_LR.vhd was successful.
+# Compile of shift_right.vhd failed with 3 errors.
+# Compile of signout.vhd failed with 2 errors.
+# Compile of small_ALU.vhd was successful.
+# Compile of special_case.vhd failed with 2 errors.
+# Compile of special_case_block.vhd was successful.
+# Compile of vector_out.vhd failed with 2 errors.
+# 22 compiles, 8 failed with 22 errors.
+# Compile of signout.vhd failed with 2 errors.
+# Compile of signout.vhd failed with 2 errors.
+# Compile of signout.vhd was successful.
+# Compile of man_fix.vhd failed with 5 errors.
+# Compile of man_fix.vhd was successful.
+# Compile of shift_right.vhd failed with 3 errors.
+# Compile of shift_right.vhd was successful.
+# Compile of special_case.vhd failed with 2 errors.
+# Compile of special_case.vhd failed with 2 errors.
+# Compile of special_case.vhd was successful.
+# Compile of addition_block.vhd failed with 5 errors.
+# Compile of addition_block.vhd failed with 5 errors.
+# Compile of shift_right.vhd was successful.
+# Compile of addition_block.vhd failed with 3 errors.
+# Compile of addition_block.vhd failed with 3 errors.
+# Compile of shift_right.vhd was successful.
+# Compile of special_case.vhd was successful.
+# Compile of num_type.vhd failed with 2 errors.
+# Compile of num_type.vhd was successful.
+# Compile of addition_block.vhd failed with 3 errors.
+# Compile of addition_block.vhd was successful.
+# Compile of vector_out.vhd failed with 2 errors.
+# Compile of vector_out.vhd was successful.
+# Compile of output_block.vhd failed with 1 errors.
+# Compile of output_block.vhd was successful.
+# Compile of num_type.vhd was successful.
+# Compile of control_unit.vhd was successful.
+# Compile of control_unit.vhd was successful.
+# Compile of control_unit.vhd was successful.
+# Compile of exp_compare_block.vhd was successful.
+# Compile of control_unit.vhd was successful.
+# Compile of output_register.vhd failed with 3 errors.
+# Compile of output_register.vhd failed with 3 errors.
+# Compile of output_register.vhd was successful.
+# Compile of output_register.vhd was successful.
+# Compile of fp_adder.vhd failed with 1 errors.
+# Compile of fp_adder.vhd failed with 13 errors.
+# Compile of fp_adder.vhd failed with 5 errors.
+# Compile of fp_adder.vhd was successful.
+# Compile of fp_adder.vhd was successful.
+vsim -gui work.fp_adder(fp_adder_arch)
+# vsim -gui work.fp_adder(fp_adder_arch) 
+# Start time: 18:59:33 on Mar 01,2022
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.fp_adder(fp_adder_arch)
+# Loading work.input_register(input_register_arch)
+# Loading work.control_unit(control_unit_arch)
+# Loading work.special_case_block(special_case_block_arch)
+# Loading work.num_type(num_type_arch)
+# Loading work.special_case(special_case_arch)
+# Loading work.exp_compare_block(exp_compare_block_arch)
+# Loading work.small_alu(small_alu_arch)
+# Loading work.man_fix(man_fix_arch)
+# Loading work.addition_block(addition_block_arch)
+# Loading work.mux(mux_arch)
+# Loading work.shift_r(shift_r_arch)
+# Loading work.compare(compare_arch)
+# Loading work.signout(signout_arch)
+# Loading work.big_alu(big_alu_arch)
+# Loading work.norm_round_block(norm_round_block_arch)
+# Loading work.zero_count(zero_count_arch)
+# Loading work.shift_lr(shift_lr_arch)
+# Loading work.inc_dec_exp(inc_dec_exp_arch)
+# Loading work.round(round_arch)
+# Loading work.output_block(output_block_arch)
+# Loading work.round_ovf(round_ovf_arch)
+# Loading work.vector_out(vector_out_arch)
+# Loading work.output_register(output_register_arch)
+add wave -position insertpoint  \
+sim:/fp_adder/clk \
+sim:/fp_adder/rst \
+sim:/fp_adder/start \
+sim:/fp_adder/numA \
+sim:/fp_adder/numB \
+sim:/fp_adder/flag \
+sim:/fp_adder/regs_control \
+sim:/fp_adder/sum \
+sim:/fp_adder/mid_sA \
+sim:/fp_adder/mid_sB \
+sim:/fp_adder/mid_expA \
+sim:/fp_adder/mid_expB \
+sim:/fp_adder/mid_manA \
+sim:/fp_adder/mid_manB \
+sim:/fp_adder/spec_case_out \
+sim:/fp_adder/spec_case_in \
+sim:/fp_adder/not_spec_case_out \
+sim:/fp_adder/spec_num \
+sim:/fp_adder/cmp_out \
+sim:/fp_adder/cmp_in \
+sim:/fp_adder/exp_out \
+sim:/fp_adder/shift_out \
+sim:/fp_adder/shift_in \
+sim:/fp_adder/manA_out \
+sim:/fp_adder/manB_out \
+sim:/fp_adder/sout \
+sim:/fp_adder/sum_man \
+sim:/fp_adder/cout_out \
+sim:/fp_adder/cout_in \
+sim:/fp_adder/out_exp \
+sim:/fp_adder/man_out \
+sim:/fp_adder/rovf_out \
+sim:/fp_adder/inf_out \
+sim:/fp_adder/unf_out \
+sim:/fp_adder/rovf_in \
+sim:/fp_adder/inf_in \
+sim:/fp_adder/unf_in \
+sim:/fp_adder/mid_regs_control \
+sim:/fp_adder/mid_sum_in \
+sim:/fp_adder/mid_unf_flag_out
+quit -sim
+# End time: 19:02:16 on Mar 01,2022, Elapsed time: 0:02:43
+# Errors: 0, Warnings: 0
+do {C:/Users/Gregory/Desktop/fp adder/do_fp_adder.do}
+# vsim -gui work.fp_adder(fp_adder_arch) 
+# Start time: 19:02:24 on Mar 01,2022
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.fp_adder(fp_adder_arch)
+# Loading work.input_register(input_register_arch)
+# Loading work.control_unit(control_unit_arch)
+# Loading work.special_case_block(special_case_block_arch)
+# Loading work.num_type(num_type_arch)
+# Loading work.special_case(special_case_arch)
+# Loading work.exp_compare_block(exp_compare_block_arch)
+# Loading work.small_alu(small_alu_arch)
+# Loading work.man_fix(man_fix_arch)
+# Loading work.addition_block(addition_block_arch)
+# Loading work.mux(mux_arch)
+# Loading work.shift_r(shift_r_arch)
+# Loading work.compare(compare_arch)
+# Loading work.signout(signout_arch)
+# Loading work.big_alu(big_alu_arch)
+# Loading work.norm_round_block(norm_round_block_arch)
+# Loading work.zero_count(zero_count_arch)
+# Loading work.shift_lr(shift_lr_arch)
+# Loading work.inc_dec_exp(inc_dec_exp_arch)
+# Loading work.round(round_arch)
+# Loading work.output_block(output_block_arch)
+# Loading work.round_ovf(round_ovf_arch)
+# Loading work.vector_out(vector_out_arch)
+# Loading work.output_register(output_register_arch)
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 0  Instance: /fp_adder/normalize_rounding/expIncDec
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 0  Instance: /fp_adder/normalize_rounding/expIncDec
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 0  Instance: /fp_adder/normalize_rounding/expIncDec
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /fp_adder/normalize_rounding/expIncDec
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /fp_adder/normalize_rounding/shiftLR
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /fp_adder/add_block/shiftR
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 2  Instance: /fp_adder/normalize_rounding/expIncDec
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 2  Instance: /fp_adder/normalize_rounding/expIncDec
+quit -sim
+# End time: 19:04:31 on Mar 01,2022, Elapsed time: 0:02:07
+# Errors: 0, Warnings: 8
+do {C:/Users/Gregory/Desktop/fp adder/do_fp_adder.do}
+# vsim -gui work.fp_adder(fp_adder_arch) 
+# Start time: 19:04:37 on Mar 01,2022
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.fp_adder(fp_adder_arch)
+# Loading work.input_register(input_register_arch)
+# Loading work.control_unit(control_unit_arch)
+# Loading work.special_case_block(special_case_block_arch)
+# Loading work.num_type(num_type_arch)
+# Loading work.special_case(special_case_arch)
+# Loading work.exp_compare_block(exp_compare_block_arch)
+# Loading work.small_alu(small_alu_arch)
+# Loading work.man_fix(man_fix_arch)
+# Loading work.addition_block(addition_block_arch)
+# Loading work.mux(mux_arch)
+# Loading work.shift_r(shift_r_arch)
+# Loading work.compare(compare_arch)
+# Loading work.signout(signout_arch)
+# Loading work.big_alu(big_alu_arch)
+# Loading work.norm_round_block(norm_round_block_arch)
+# Loading work.zero_count(zero_count_arch)
+# Loading work.shift_lr(shift_lr_arch)
+# Loading work.inc_dec_exp(inc_dec_exp_arch)
+# Loading work.round(round_arch)
+# Loading work.output_block(output_block_arch)
+# Loading work.round_ovf(round_ovf_arch)
+# Loading work.vector_out(vector_out_arch)
+# Loading work.output_register(output_register_arch)
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 0  Instance: /fp_adder/normalize_rounding/expIncDec
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 0  Instance: /fp_adder/normalize_rounding/expIncDec
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 0  Instance: /fp_adder/normalize_rounding/expIncDec
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /fp_adder/normalize_rounding/expIncDec
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /fp_adder/normalize_rounding/shiftLR
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /fp_adder/add_block/shiftR
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 2  Instance: /fp_adder/normalize_rounding/expIncDec
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 2  Instance: /fp_adder/normalize_rounding/expIncDec
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 19:09:30 on Mar 01,2022, Elapsed time: 0:04:53
+# Errors: 0, Warnings: 8
