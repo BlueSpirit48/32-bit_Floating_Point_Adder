@@ -15,7 +15,7 @@ end nInputBit_MUX;
 architecture nInputBit_MUX_arch of nInputBit_MUX is
 signal nvin: std_logic_vector( n-1 downto 0);
 begin 
-    nvin <= (others => '0');
+    nvin <= (others => 'X');
     with sel select
     	outMux <= in0 when '0',
               	  in1 when '1',
